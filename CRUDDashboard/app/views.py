@@ -5,8 +5,8 @@ from django.contrib.auth.hashers import make_password
 from datetime import datetime
 from bson.json_util import dumps
 from django.core.paginator import Paginator
-# Create your views here.
 
+# DJANGO + PYMONGO start ------------------------------------------------------------------------------------------
 
 def createConnection():
     client = MongoClient()
@@ -140,7 +140,7 @@ def addPlan(req):
 
         return render(req, "app/addPlan.html", {"val": True})
 
-
+# Adding data to database using this function below
 def addDetails(req):
     db = createConnection()
 
@@ -193,3 +193,108 @@ def addDetails(req):
     # print( get )
 
     return HttpResponse("Added")
+# DJANGO + PYMONGO end --------------------------------------------------------------------------------------------------
+
+
+# DJANGO + DJONGO-ENGINE start ------------------------------------------------------------------------------------------
+
+# def findCount():
+#     loginCount = CustomerData.objects.count()
+#     companyCount = Company.objects.count()
+#     planCount = PlanDetails.objects.count()
+
+#     data = {
+#         "loginCount": loginCount,
+#         "companyCount": companyCount,
+#         "planCount": planCount
+#     }
+
+#     return data
+
+
+# def home(req):
+#     count = findCount()
+
+#     data = CustomerData.objects.all()
+
+#     return render(req, "app/index.html", {"data": data, "count": count})
+
+
+# def company(req):
+#     count = findCount()
+#     data = Company.objects.all()
+
+#     return render(req, "app/companyDetails.html",  {"data": data, "count": count})
+
+
+# def plan(req):
+#     count = findCount()
+#     data = PlanDetails.objects.all()
+
+#     return render(req, "app/planDetails.html",  {"data": data, "count": count})
+
+
+# def editPlan(req, data):
+#     if req.method == 'GET':
+#         print("editPlan=>", data)
+
+#         planData = PlanDetails.objects.get(planId=data)
+#         # print(planData.validity)
+
+#         return render(req, "app/editPlan.html", {"planData": planData})
+#         # return HttpResponse("Edit")
+
+#     if req.method == 'POST':
+#         planName = req.POST['planName']
+#         planValidity = req.POST['planValidity']
+#         planPrice = req.POST['planPrice']
+
+#         planData = PlanDetails.objects.get(planId=data)
+#         planData.planName = planName
+#         planData.validity = planValidity
+#         planData.price = planPrice
+#         planData.save()
+
+#         count = findCount()
+#         data = PlanDetails.objects.all()
+
+#         return render(req, "app/planDetails.html", {"data": data, "count": count})
+
+
+# def deletePlan(req, data):
+#     # print("deletePlan=>", data)
+#     form = PlanDetails.objects.get(planId=data)
+#     form.delete()
+
+#     count = findCount()
+#     data = PlanDetails.objects.all()
+
+#     return render(req, "app/planDetails.html", {"data": data, "count": count})
+
+
+# def addPlan(req):
+#     if req.method == 'GET':
+#         print("GET")
+#         return render(req, "app/addPlan.html")
+
+#     if req.method == 'POST':
+#         planName = req.POST['planName']
+#         planValidity = req.POST['planValidity']
+#         planPrice = req.POST['planPrice']
+#         print("POST=>", planName, planValidity, planPrice)
+
+#         form = PlanDetails(planName=planName,
+#                            validity=planValidity, price=planPrice)
+#         form.save()
+#         return render(req, "app/addPlan.html", {"val": True})
+
+
+# def addDetails(req):
+#     form = CustomerData(First_Name="Akshay", Last_Name="Kumar", Email="Akshay@mail.com", Contact_number="1234567899",
+#                  Address="Delhi", Gender="Male", Password=make_password("456789"), PlanDetails="Silver", Status=1)
+
+#     form.save()
+
+#     return HttpResponse("Added")
+
+# DJANGO + DJONGO-ENGINE end ------------------------------------------------------------------------------------------
