@@ -78,12 +78,14 @@ WSGI_APPLICATION = 'CRUDDashboard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# Added Database specifications for Djongo Engine
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'djongo',
+#         'NAME': 'CRUDDashboard_Djongo',
 #     }
 # }
+
 
 
 # Password validation
