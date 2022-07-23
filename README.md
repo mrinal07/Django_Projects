@@ -1,2 +1,2 @@
-# Django_Projects
+# Admin Dashboard using Django
 Tech stack : Bootstrap + Django + MongoDB
